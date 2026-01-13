@@ -1,0 +1,153 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.05em;
+}
+
+.nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navLink {
+  color: #16425B;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #25A18E;
+}
+
+.ctaButton {
+  background-color: #4A90A4;
+  color: white;
+  border-radius: 24px;
+  padding: 0.75rem 2rem;
+  text-transform: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #3A7A94;
+}
+
+.menuButton {
+  color: #16425B;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.drawer {
+  width: 280px;
+  height: 100%;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.drawerHeader {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.drawerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.drawerItem {
+  padding: 0;
+}
+
+.drawerLink {
+  display: block;
+  padding: 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.drawerLink:hover {
+  background-color: rgba(37, 161, 142, 0.1);
+}
+
+.drawerCtaButton {
+  width: 100%;
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  background-color: #4A90A4;
+  color: white;
+  border-radius: 24px;
+  padding: 0.75rem 2rem;
+  text-transform: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.drawerCtaButton:hover {
+  background-color: #3A7A94;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .toolbar {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .toolbar {
+    padding: 1rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+}
