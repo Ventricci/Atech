@@ -80,7 +80,6 @@
   background-color: #1E8A78;
 }
 
-/* Responsividade */
 @media (max-width: 900px) {
   .title {
     font-size: 2.5rem;

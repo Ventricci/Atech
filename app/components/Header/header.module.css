@@ -135,7 +135,6 @@
   background-color: #3A7A94;
 }
 
-/* Responsividade */
 @media (max-width: 1200px) {
   .toolbar {
     padding: 1rem 2rem;

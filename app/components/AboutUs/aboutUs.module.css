@@ -65,7 +65,6 @@
   margin-bottom: 0;
 }
 
-/* Responsividade */
 @media (max-width: 900px) {
   .aboutUs {
     padding: 4rem 0;
