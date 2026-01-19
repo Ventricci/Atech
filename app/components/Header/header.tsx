@@ -1,22 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  AppBar,
-  Toolbar,
-  Button,
-  IconButton,
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Box,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import styles from './header.module.css';
 
 const menuItems = [
   { label: 'Sobre', href: '#sobre' },
@@ -26,196 +11,119 @@ const menuItems = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 900);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
-  const drawer = (
-    <Box
-      sx={{
-        width: 280,
-        height: '100%',
-        bgcolor: 'white',
-        p: 2,
-      }}
-    >
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 2 }}>
-        <IconButton onClick={handleDrawerToggle}>
-          <CloseIcon />
-        </IconButton>
-      </Box>
-      <List>
-        {menuItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton
-              component="a"
-              href={item.href}
-              onClick={handleDrawerToggle}
-              sx={{
-                py: 2,
-                '&:hover': {
-                  bgcolor: 'rgba(37, 161, 142, 0.1)',
-                },
-              }}
-            >
-              <ListItemText
-                primary={item.label}
-                sx={{
-                  '& .MuiListItemText-primary': {
-                    fontSize: '1.1rem',
-                    fontWeight: 500,
-                  },
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-        <ListItem sx={{ mt: 2 }}>
-          <Button
-            fullWidth
-            variant="contained"
-            href="#contato"
-            sx={{
-              bgcolor: '#4A90A4',
-              color: 'white',
-              borderRadius: '24px',
-              py: 1.5,
-              textTransform: 'none',
-              fontSize: '1rem',
-              fontWeight: 600,
-              '&:hover': {
-                bgcolor: '#3A7A94',
-              },
-            }}
-          >
-            Contate-nos
-          </Button>
-        </ListItem>
-      </List>
-    </Box>
-  );
-
   return (
     <>
-      <AppBar
-        position="fixed"
-        elevation={0}
-        sx={{
-          bgcolor: 'white',
-          borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
-        }}
-      >
-        <Toolbar
-          sx={{
-            justifyContent: 'space-between',
-            px: { xs: 2, sm: 4, md: 6, lg: 8 },
-            py: 1,
-          }}
-        >
+      <header className={styles.header}>
+        <div className={styles.toolbar}>
           {/* Logo ATECH */}
-          <Box
-            component="a"
-            href="/"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              textDecoration: 'none',
-              fontFamily: 'var(--font-orbitron)',
-              fontSize: { xs: '1.5rem', sm: '1.75rem' },
-              fontWeight: 600,
-              letterSpacing: '0.05em',
-            }}
-          >
+          <a href="/" className={styles.logo}>
             <span style={{ color: '#25A18E' }}>A</span>
             <span style={{ color: '#16425B' }}>TECH</span>
-          </Box>
+          </a>
 
           {/* Menu Desktop - Centro */}
           {!isMobile && (
-            <Box
-              sx={{
-                display: 'flex',
-                gap: 4,
-                position: 'absolute',
-                left: '50%',
-                transform: 'translateX(-50%)',
-              }}
-            >
+            <nav className={styles.nav}>
               {menuItems.map((item) => (
-                <Button
+                <a
                   key={item.label}
                   href={item.href}
-                  sx={{
-                    color: '#16425B',
-                    textTransform: 'none',
-                    fontSize: '1rem',
-                    fontWeight: 500,
-                    '&:hover': {
-                      bgcolor: 'transparent',
-                      color: '#25A18E',
-                    },
-                  }}
+                  className={styles.navLink}
                 >
                   {item.label}
-                </Button>
+                </a>
               ))}
-            </Box>
+            </nav>
           )}
 
           {/* Botão Contate-nos Desktop / Menu Mobile */}
           {isMobile ? (
-            <IconButton
-              color="inherit"
-              aria-label="abrir menu"
-              edge="end"
+            <button
+              className={styles.menuButton}
               onClick={handleDrawerToggle}
-              sx={{ color: '#16425B' }}
+              aria-label="abrir menu"
             >
-              <MenuIcon />
-            </IconButton>
+              ☰
+            </button>
           ) : (
-            <Button
-              variant="contained"
-              href="#contato"
-              sx={{
-                bgcolor: '#4A90A4',
-                color: 'white',
-                borderRadius: '24px',
-                px: 4,
-                py: 1,
-                textTransform: 'none',
-                fontSize: '1rem',
-                fontWeight: 600,
-                '&:hover': {
-                  bgcolor: '#3A7A94',
-                },
-              }}
-            >
+            <a href="#contato" className={styles.ctaButton}>
               Contate-nos
-            </Button>
+            </a>
           )}
-        </Toolbar>
-      </AppBar>
+        </div>
+      </header>
 
       {/* Menu Mobile Drawer */}
-      <Drawer
-        anchor="right"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        sx={{
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-          },
-        }}
-      >
-        {drawer}
-      </Drawer>
+      {mobileOpen && (
+        <>
+          <div 
+            className={styles.overlay}
+            onClick={handleDrawerToggle}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              zIndex: 1100,
+            }}
+          />
+          <div 
+            className={styles.drawer}
+            style={{
+              position: 'fixed',
+              top: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 1200,
+            }}
+          >
+            <div className={styles.drawerHeader}>
+              <button onClick={handleDrawerToggle} style={{ border: 'none', background: 'none', fontSize: '1.5rem', cursor: 'pointer' }}>
+                ✕
+              </button>
+            </div>
+            <ul className={styles.drawerList}>
+              {menuItems.map((item) => (
+                <li key={item.label} className={styles.drawerItem}>
+                  <a
+                    href={item.href}
+                    className={styles.drawerLink}
+                    onClick={handleDrawerToggle}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li className={styles.drawerItem}>
+                <a href="#contato" className={styles.drawerCtaButton}>
+                  Contate-nos
+                </a>
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
 
-      {/* Spacer para compensar o AppBar fixo */}
-      <Toolbar />
+      {/* Spacer para compensar o header fixo */}
+      <div style={{ height: '80px' }} />
     </>
   );
 }

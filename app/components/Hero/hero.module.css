@@ -1,0 +1,101 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url(/hero-bg.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.7);
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.content {
+  color: white;
+  max-width: 600px;
+  padding: 0 1rem;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tagLine {
+  width: 40px;
+  height: 2px;
+  background-color: #25A18E;
+}
+
+.tagText {
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.ctaButton {
+  background-color: #25A18E;
+  color: white;
+  border-radius: 24px;
+  padding: 0.75rem 2.5rem;
+  text-transform: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background-color: #1E8A78;
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .content {
+    padding: 0 0.5rem;
+  }
+
+  .tagText {
+    font-size: 0.9rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

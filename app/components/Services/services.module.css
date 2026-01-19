@@ -1,0 +1,328 @@
+.services {
+  padding: 6rem 0;
+  background-color: #E8F4F8;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.tagText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.tagLine {
+  width: 60px;
+  height: 2px;
+  background-color: #3A7CA5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 380px;
+  cursor: pointer;
+}
+
+.card:hover {
+  background-color: #4A90A4;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover .cardIcon {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
+.card:hover .cardTitle {
+  color: white;
+}
+
+.card:hover .cardDescription {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.card:hover .cardLink {
+  color: white;
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(39%) sepia(41%) saturate(914%) hue-rotate(162deg) brightness(91%) contrast(89%);
+  transition: filter 0.3s ease;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  color: #16425B;
+  transition: color 0.3s ease;
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+  transition: color 0.3s ease;
+}
+
+.cardLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4A90A4;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.cardLink:hover {
+  gap: 0.8rem;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cardLink:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Carrossel Mobile */
+.carousel {
+  display: none;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.carouselTrack {
+  display: flex;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.carouselCard {
+  min-width: 100%;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 2rem;
+  color: #16425B;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.carouselButton:hover {
+  background-color: #4A90A4;
+  color: white;
+}
+
+.carouselButtonPrev {
+  left: -20px;
+}
+
+.carouselButtonNext {
+  right: -20px;
+}
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(74, 144, 164, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.indicatorActive {
+  background-color: #4A90A4;
+  transform: scale(1.2);
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .services {
+    padding: 4rem 0;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .tagText {
+    font-size: 1.25rem;
+  }
+
+  /* Ocultar grid, mostrar carrossel */
+  .grid {
+    display: none;
+  }
+
+  .carousel {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .services {
+    padding: 3rem 0;
+  }
+
+  .carouselCard {
+    padding: 1.5rem;
+  }
+
+  .cardIcon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+
+  .carouselButton {
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+  }
+
+  .carouselButtonPrev {
+    left: -15px;
+  }
+
+  .carouselButtonNext {
+    right: -15px;
+  }
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .services {
+    padding: 4rem 0;
+  }
+
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 2rem;
+    min-height: auto;
+  }
+
+  .tagText {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .services {
+    padding: 3rem 0;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .cardIcon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+
+  .cardDescription {
+    font-size: 0.9rem;
+  }
+}
