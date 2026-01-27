@@ -81,7 +81,6 @@
   margin-bottom: 1.5rem;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(39%) sepia(41%) saturate(914%) hue-rotate(162deg) brightness(91%) contrast(89%);
-  transition: filter 0.3s ease;
 }
 
 .cardTitle {

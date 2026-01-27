@@ -1,0 +1,274 @@
+.process {
+  padding: 6rem 0;
+  background: linear-gradient(180deg, #0F3D56 0%, #16425B 100%);
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.divider {
+  width: 80px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto 4rem;
+}
+
+/* Desktop View */
+.stepsContainerDesktop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.stepCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.iconCircle {
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.iconCircle:hover {
+  transform: scale(1.05);
+}
+
+.stepIcon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(25%) sepia(30%) saturate(1084%) hue-rotate(163deg) brightness(94%) contrast(90%);
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.stepDescription {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 250px;
+}
+
+.connector {
+  width: 60px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.3);
+  align-self: center;
+  margin-top: 40px;
+  flex-shrink: 0;
+}
+
+/* Mobile Carousel View */
+.carouselContainer {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.carouselContent {
+  flex: 1;
+  max-width: 400px;
+}
+
+.carouselButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.carouselButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.carouselButton:active {
+  transform: scale(0.95);
+}
+
+/* Carousel Dots */
+.dotsContainer {
+  display: none;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.dotActive {
+  background-color: white;
+  width: 14px;
+  height: 14px;
+}
+
+/* CTA Button */
+.ctaContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.ctaButton {
+  padding: 0.875rem 2.5rem;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: none;
+}
+
+.ctaButton:hover {
+  background-color: white;
+  color: #16425B;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(255, 255, 255, 0.3);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .stepsContainerDesktop {
+    gap: 0.5rem;
+  }
+
+  .stepDescription {
+    font-size: 0.875rem;
+  }
+
+  .connector {
+    width: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .process {
+    padding: 4rem 0;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  /* Hide desktop view */
+  .stepsContainerDesktop {
+    display: none;
+  }
+
+  /* Show carousel view */
+  .carouselContainer {
+    display: flex;
+  }
+
+  .dotsContainer {
+    display: flex;
+  }
+
+  .stepDescription {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .carouselButton {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .stepCard {
+    padding: 1rem;
+  }
+
+  .iconCircle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .stepIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .stepTitle {
+    font-size: 1.125rem;
+  }
+
+  .stepDescription {
+    font-size: 0.875rem;
+  }
+
+  .ctaButton {
+    padding: 0.75rem 2rem;
+    font-size: 0.9375rem;
+  }
+}
