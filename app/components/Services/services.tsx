@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import styles from './services.module.css';
-import ServiceModal from './ServiceModal';
+import { Modal } from '../Modal';
+import ServiceModalContent from './ServiceModalContent';
 import { servicesContent } from './servicesData';
 
 const servicesData = [
@@ -185,12 +186,16 @@ export default function Services() {
 
       {/* Modal */}
       {selectedService && (
-        <ServiceModal
+        <Modal
           isOpen={modalOpen}
           onClose={closeModal}
           title={servicesData.find(s => s.id === selectedService)?.titlePlain || ''}
-          content={servicesContent[selectedService]}
-        />
+          showActionButton={true}
+          actionButtonText="Solicitar Orçamento →"
+          actionButtonHref="#contato"
+        >
+          <ServiceModalContent content={servicesContent[selectedService]} />
+        </Modal>
       )}
     </section>
   );

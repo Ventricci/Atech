@@ -5,3 +5,4 @@ export * from './Services';
 export * from './Process';
 export * from './Contact';
 export * from './Footer';
+export * from './Modal';

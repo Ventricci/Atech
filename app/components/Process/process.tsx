@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import styles from './process.module.css';
+import { Modal } from '../Modal';
+import ProcessModalContent from './ProcessModalContent';
 
 const processSteps = [
   {
@@ -32,6 +34,7 @@ const processSteps = [
 
 export default function Process() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const handleNext = () => {
     setCurrentStep((prev) => (prev + 1) % processSteps.length);
@@ -43,6 +46,14 @@ export default function Process() {
 
   const handleDotClick = (index: number) => {
     setCurrentStep(index);
+  };
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -120,11 +131,23 @@ export default function Process() {
 
         {/* CTA Button */}
         <div className={styles.ctaContainer}>
-          <button className={styles.ctaButton}>
+          <button className={styles.ctaButton} onClick={openModal}>
             Saiba mais
           </button>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        title="Nosso Processo de Trabalho"
+        showActionButton={true}
+        actionButtonText="Solicitar Orçamento →"
+        actionButtonHref="#contato"
+      >
+        <ProcessModalContent />
+      </Modal>
     </section>
   );
 }

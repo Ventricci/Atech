@@ -1,0 +1,88 @@
+.introduction {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  margin: 0 0 2rem 0;
+}
+
+.offerings {
+  margin-bottom: 2rem;
+}
+
+.offeringsTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #16425B;
+  margin: 0 0 1rem 0;
+}
+
+.offeringsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.offeringsItem {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.offeringsItem::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #25A18E;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.offeringsItem strong {
+  color: #16425B;
+}
+
+.target {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #666;
+  margin: 0;
+  padding: 1.5rem;
+  background-color: #F5F9FA;
+  border-radius: 8px;
+  border-left: 4px solid #25A18E;
+}
+
+.target strong {
+  color: #16425B;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .introduction {
+    font-size: 0.9rem;
+  }
+
+  .offeringsTitle {
+    font-size: 1rem;
+  }
+
+  .offeringsItem {
+    font-size: 0.9rem;
+  }
+
+  .target {
+    font-size: 0.9rem;
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .offeringsItem {
+    padding-left: 1.25rem;
+  }
+}
