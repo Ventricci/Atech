@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './footer.module.css';
+import { Logo } from '../shared';
 
 export default function Footer() {
   return (
@@ -10,10 +11,7 @@ export default function Footer() {
         <div className={styles.content}>
           {/* Logo */}
           <div className={styles.logoSection}>
-            <a href="/" className={styles.logo}>
-              <span style={{ color: '#25A18E' }}>A</span>
-              <span style={{ color: 'white' }}>TECH</span>
-            </a>
+            <Logo variant="footer" />
           </div>
 
           {/* Endereço */}

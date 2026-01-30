@@ -1,0 +1,57 @@
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.center {
+  flex-direction: column;
+  align-items: center;
+}
+
+.left {
+  flex-direction: row;
+  align-items: center;
+}
+
+.tagText {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.tagLine {
+  width: 60px;
+  height: 2px;
+  background-color: #3A7CA5;
+}
+
+.normalText {
+  color: #16425B;
+}
+
+.coloredText {
+  color: #3A7CA5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tagText {
+    font-size: 1.25rem;
+  }
+
+  .tagLine {
+    width: 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tagText {
+    font-size: 1.125rem;
+  }
+
+  .tagLine {
+    width: 40px;
+  }
+}

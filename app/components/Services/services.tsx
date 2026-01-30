@@ -3,8 +3,10 @@
 import React, { useState } from 'react';
 import styles from './services.module.css';
 import { Modal } from '../Modal';
+import { SectionTag } from '../shared';
 import ServiceModalContent from './ServiceModalContent';
 import { servicesContent } from './servicesData';
+import { useCarousel } from '../../hooks/useCarousel';
 
 const servicesData = [
   {
@@ -62,46 +64,16 @@ const servicesData = [
 ];
 
 export default function Services() {
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<number | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const nextSlide = () => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => (prev + 1) % servicesData.length);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
-
-  const prevSlide = () => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentSlide((prev) => (prev - 1 + servicesData.length) % servicesData.length);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
-
-  const goToSlide = (index: number) => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentSlide(index);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
+  
+  const {
+    currentIndex: currentSlide,
+    isTransitioning,
+    next: nextSlide,
+    prev: prevSlide,
+    goTo: goToSlide
+  } = useCarousel({ itemsLength: servicesData.length });
 
   const openModal = (serviceId: number) => {
     setSelectedService(serviceId);
@@ -118,13 +90,7 @@ export default function Services() {
       <div className={styles.container}>
         {/* Título da Seção */}
         <div className={styles.header}>
-          <div className={styles.tag}>
-            <h2 className={styles.tagText}>
-              <span style={{ color: '#16425B' }}>Nossos</span>{' '}
-              <span style={{ color: '#3A7CA5' }}>Serviços</span>
-            </h2>
-            <div className={styles.tagLine}></div>
-          </div>
+          <SectionTag text="Nossos" coloredText="Serviços" />
         </div>
 
         {/* Grid de Cards - Desktop */}

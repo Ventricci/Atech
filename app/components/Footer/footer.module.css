@@ -26,16 +26,6 @@
   align-items: flex-start;
 }
 
-.logo {
-  font-family: var(--font-orbitron), sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.05em;
-}
-
 /* Sections */
 .section {
   display: flex;

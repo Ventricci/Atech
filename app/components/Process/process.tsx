@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styles from './process.module.css';
 import { Modal } from '../Modal';
 import ProcessModalContent from './ProcessModalContent';
+import { useCarousel } from '../../hooks/useCarousel';
 
 const processSteps = [
   {
@@ -33,45 +34,15 @@ const processSteps = [
 ];
 
 export default function Process() {
-  const [currentStep, setCurrentStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const handleNext = () => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentStep((prev) => (prev + 1) % processSteps.length);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
-
-  const handlePrev = () => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
-
-  const handleDotClick = (index: number) => {
-    if (isTransitioning) return; // Bloqueia se já está em transição
-    
-    setIsTransitioning(true);
-    setCurrentStep(index);
-    
-    // Libera após a transição CSS (300ms)
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 200);
-  };
+  
+  const {
+    currentIndex: currentStep,
+    isTransitioning,
+    next: handleNext,
+    prev: handlePrev,
+    goTo: handleDotClick
+  } = useCarousel({ itemsLength: processSteps.length });
 
   const openModal = () => {
     setModalOpen(true);
