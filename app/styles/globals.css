@@ -3,6 +3,25 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Design System Colors */
+  --color-primary: #25A18E;
+  --color-primary-dark: #1E8A78;
+  --color-secondary: #16425B;
+  --color-accent: #4A90A4;
+  --color-accent-dark: #3A7A94;
+  --color-accent-light: #3A7CA5;
+  --color-background-light: #E8F4F8;
+  --color-background-lightest: #F5F9FA;
+  
+  /* Spacing */
+  --container-max-width: 1200px;
+  --container-padding: 2rem;
+  --section-padding: 6rem 0;
+  
+  /* Transitions */
+  --transition-duration: 300ms;
+  --transition-easing: ease;
 }
 
 @theme inline {
@@ -23,4 +42,25 @@ body {
   color: var(--foreground);
   font-family: var(--font-poppins), sans-serif;
   font-size: 16px;
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --container-padding: 1.5rem;
+    --section-padding: 4rem 0;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --container-padding: 1rem;
+    --section-padding: 3rem 0;
+  }
 }

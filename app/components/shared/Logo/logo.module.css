@@ -1,0 +1,34 @@
+.logo {
+  font-family: var(--font-orbitron), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.05em;
+}
+
+.letterA {
+  color: #25A18E;
+}
+
+/* Variante padrão (Header) */
+.default .letterTech {
+  color: #16425B;
+}
+
+/* Variante Footer */
+.footer {
+  font-size: 2rem;
+}
+
+.footer .letterTech {
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer {
+    font-size: 1.75rem;
+  }
+}

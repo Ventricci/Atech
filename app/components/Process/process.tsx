@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 import styles from './process.module.css';
+import { Modal } from '../Modal';
+import ProcessModalContent from './ProcessModalContent';
+import { useCarousel } from '../../hooks/useCarousel';
 
 const processSteps = [
   {
@@ -31,18 +34,22 @@ const processSteps = [
 ];
 
 export default function Process() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  
+  const {
+    currentIndex: currentStep,
+    isTransitioning,
+    next: handleNext,
+    prev: handlePrev,
+    goTo: handleDotClick
+  } = useCarousel({ itemsLength: processSteps.length });
 
-  const handleNext = () => {
-    setCurrentStep((prev) => (prev + 1) % processSteps.length);
+  const openModal = () => {
+    setModalOpen(true);
   };
 
-  const handlePrev = () => {
-    setCurrentStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
-  };
-
-  const handleDotClick = (index: number) => {
-    setCurrentStep(index);
+  const closeModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -78,6 +85,7 @@ export default function Process() {
           <button 
             className={styles.carouselButton}
             onClick={handlePrev}
+            disabled={isTransitioning}
             aria-label="Passo anterior"
           >
             ‹
@@ -100,6 +108,7 @@ export default function Process() {
           <button 
             className={styles.carouselButton}
             onClick={handleNext}
+            disabled={isTransitioning}
             aria-label="Próximo passo"
           >
             ›
@@ -113,6 +122,7 @@ export default function Process() {
               key={index}
               className={`${styles.dot} ${index === currentStep ? styles.dotActive : ''}`}
               onClick={() => handleDotClick(index)}
+              disabled={isTransitioning}
               aria-label={`Ir para passo ${index + 1}`}
             />
           ))}
@@ -120,11 +130,23 @@ export default function Process() {
 
         {/* CTA Button */}
         <div className={styles.ctaContainer}>
-          <button className={styles.ctaButton}>
+          <button className={styles.ctaButton} onClick={openModal}>
             Saiba mais
           </button>
         </div>
       </div>
+
+      {/* Modal */}
+      <Modal
+        isOpen={modalOpen}
+        onClose={closeModal}
+        title="Nosso Processo de Trabalho"
+        showActionButton={true}
+        actionButtonText="Solicitar Orçamento →"
+        actionButtonHref="#contato"
+      >
+        <ProcessModalContent />
+      </Modal>
     </section>
   );
 }

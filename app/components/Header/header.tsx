@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import styles from './header.module.css';
+import { Logo } from '../shared';
 
 const menuItems = [
   { label: 'Sobre', href: '#sobre' },
@@ -31,11 +32,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.toolbar}>
-          {/* Logo ATECH */}
-          <a href="/" className={styles.logo}>
-            <span style={{ color: '#25A18E' }}>A</span>
-            <span style={{ color: '#16425B' }}>TECH</span>
-          </a>
+          <Logo />
 
           {/* Menu Desktop - Centro */}
           {!isMobile && (

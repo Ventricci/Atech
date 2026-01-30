@@ -108,6 +108,7 @@
   color: #4A90A4;
   text-decoration: none;
   font-weight: 500;
+  cursor: pointer;
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
@@ -177,6 +178,12 @@
   color: white;
 }
 
+.carouselButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .carouselButtonPrev {
   left: -20px;
 }
@@ -206,6 +213,12 @@
 .indicatorActive {
   background-color: #4A90A4;
   transform: scale(1.2);
+}
+
+.indicator:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Responsividade */

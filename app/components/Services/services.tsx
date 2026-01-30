@@ -2,6 +2,11 @@
 
 import React, { useState } from 'react';
 import styles from './services.module.css';
+import { Modal } from '../Modal';
+import { SectionTag } from '../shared';
+import ServiceModalContent from './ServiceModalContent';
+import { servicesContent } from './servicesData';
+import { useCarousel } from '../../hooks/useCarousel';
 
 const servicesData = [
   {
@@ -14,6 +19,7 @@ const servicesData = [
         Software Personalizado
       </>
     ),
+    titlePlain: 'Desenvolvimento de Software Personalizado',
     description: 'Criação de sistemas e aplicações sob medida, desenvolvidos conforme as necessidades específicas de cada cliente',
   },
   {
@@ -26,6 +32,7 @@ const servicesData = [
         da Informação
       </>
     ),
+    titlePlain: 'Consultoria em Tecnologia da Informação',
     description: 'Análise, orientação e proposição de soluções tecnológicas voltadas à melhoria de processos, sistemas e infraestrutura de TI',
   },
   {
@@ -38,6 +45,7 @@ const servicesData = [
         a Aplicações
       </>
     ),
+    titlePlain: 'Monitoramento e Suporte a Aplicações',
     description: 'Acompanhamento contínuo do funcionamento de softwares, com identificação preventiva de falhas, correções e ajustes técnicos',
   },
   {
@@ -50,23 +58,31 @@ const servicesData = [
         Sistemas e Aplicações
       </>
     ),
+    titlePlain: 'Integração entre Sistemas e Aplicações',
     description: 'Desenvolvimento e implementação de soluções que permite a comunicação e intercâmbio de informações e processos',
   },
 ];
 
 export default function Services() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<number | null>(null);
+  
+  const {
+    currentIndex: currentSlide,
+    isTransitioning,
+    next: nextSlide,
+    prev: prevSlide,
+    goTo: goToSlide
+  } = useCarousel({ itemsLength: servicesData.length });
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % servicesData.length);
+  const openModal = (serviceId: number) => {
+    setSelectedService(serviceId);
+    setModalOpen(true);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + servicesData.length) % servicesData.length);
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
+  const closeModal = () => {
+    setModalOpen(false);
+    setSelectedService(null);
   };
 
   return (
@@ -74,19 +90,17 @@ export default function Services() {
       <div className={styles.container}>
         {/* Título da Seção */}
         <div className={styles.header}>
-          <div className={styles.tag}>
-            <h2 className={styles.tagText}>
-              <span style={{ color: '#16425B' }}>Nossos</span>{' '}
-              <span style={{ color: '#3A7CA5' }}>Serviços</span>
-            </h2>
-            <div className={styles.tagLine}></div>
-          </div>
+          <SectionTag text="Nossos" coloredText="Serviços" />
         </div>
 
         {/* Grid de Cards - Desktop */}
         <div className={styles.grid}>
           {servicesData.map((service) => (
-            <div key={service.id} className={styles.card}>
+            <div 
+              key={service.id} 
+              className={styles.card}
+              onClick={() => openModal(service.id)}
+            >
               <img
                 src={service.icon}
                 alt=""
@@ -94,9 +108,9 @@ export default function Services() {
               />
               <h3 className={styles.cardTitle}>{service.title}</h3>
               <p className={styles.cardDescription}>{service.description}</p>
-              <a href="#" className={styles.cardLink}>
+              <span className={styles.cardLink}>
                 Ler mais <span className={styles.arrow}>→</span>
-              </a>
+              </span>
             </div>
           ))}
         </div>
@@ -106,6 +120,7 @@ export default function Services() {
           <button
             className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
             onClick={prevSlide}
+            disabled={isTransitioning}
             aria-label="Anterior"
           >
             ‹
@@ -121,6 +136,7 @@ export default function Services() {
                 style={{
                   transform: `translateX(-${currentSlide * 100}%)`,
                 }}
+                onClick={() => openModal(service.id)}
               >
                 <img
                   src={service.icon}
@@ -129,9 +145,9 @@ export default function Services() {
                 />
                 <h3 className={styles.cardTitle}>{service.title}</h3>
                 <p className={styles.cardDescription}>{service.description}</p>
-                <a href="#" className={styles.cardLink}>
+                <span className={styles.cardLink}>
                   Ler mais <span className={styles.arrow}>→</span>
-                </a>
+                </span>
               </div>
             ))}
           </div>
@@ -139,6 +155,7 @@ export default function Services() {
           <button
             className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
             onClick={nextSlide}
+            disabled={isTransitioning}
             aria-label="Próximo"
           >
             ›
@@ -153,12 +170,27 @@ export default function Services() {
                   index === currentSlide ? styles.indicatorActive : ''
                 }`}
                 onClick={() => goToSlide(index)}
+                disabled={isTransitioning}
                 aria-label={`Ir para slide ${index + 1}`}
               />
             ))}
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {selectedService && (
+        <Modal
+          isOpen={modalOpen}
+          onClose={closeModal}
+          title={servicesData.find(s => s.id === selectedService)?.titlePlain || ''}
+          showActionButton={true}
+          actionButtonText="Solicitar Orçamento →"
+          actionButtonHref="#contato"
+        >
+          <ServiceModalContent content={servicesContent[selectedService]} />
+        </Modal>
+      )}
     </section>
   );
 }

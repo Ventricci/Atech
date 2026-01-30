@@ -124,6 +124,12 @@
   border-color: rgba(255, 255, 255, 0.5);
 }
 
+.carouselButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .carouselButton:active {
   transform: scale(0.95);
 }
@@ -155,6 +161,12 @@
   background-color: white;
   width: 14px;
   height: 14px;
+}
+
+.dot:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* CTA Button */
