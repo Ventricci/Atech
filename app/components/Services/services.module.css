@@ -81,7 +81,6 @@
   margin-bottom: 1.5rem;
   object-fit: contain;
   filter: brightness(0) saturate(100%) invert(39%) sepia(41%) saturate(914%) hue-rotate(162deg) brightness(91%) contrast(89%);
-  transition: filter 0.3s ease;
 }
 
 .cardTitle {
@@ -109,6 +108,7 @@
   color: #4A90A4;
   text-decoration: none;
   font-weight: 500;
+  cursor: pointer;
   font-size: 0.95rem;
   transition: all 0.3s ease;
 }
@@ -178,6 +178,12 @@
   color: white;
 }
 
+.carouselButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .carouselButtonPrev {
   left: -20px;
 }
@@ -207,6 +213,12 @@
 .indicatorActive {
   background-color: #4A90A4;
   transform: scale(1.2);
+}
+
+.indicator:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Responsividade */
