@@ -65,17 +65,42 @@ export default function Services() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const nextSlide = () => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentSlide((prev) => (prev + 1) % servicesData.length);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const prevSlide = () => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentSlide((prev) => (prev - 1 + servicesData.length) % servicesData.length);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const goToSlide = (index: number) => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentSlide(index);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const openModal = (serviceId: number) => {
@@ -129,6 +154,7 @@ export default function Services() {
           <button
             className={`${styles.carouselButton} ${styles.carouselButtonPrev}`}
             onClick={prevSlide}
+            disabled={isTransitioning}
             aria-label="Anterior"
           >
             ‹
@@ -163,6 +189,7 @@ export default function Services() {
           <button
             className={`${styles.carouselButton} ${styles.carouselButtonNext}`}
             onClick={nextSlide}
+            disabled={isTransitioning}
             aria-label="Próximo"
           >
             ›
@@ -177,6 +204,7 @@ export default function Services() {
                   index === currentSlide ? styles.indicatorActive : ''
                 }`}
                 onClick={() => goToSlide(index)}
+                disabled={isTransitioning}
                 aria-label={`Ir para slide ${index + 1}`}
               />
             ))}

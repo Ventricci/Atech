@@ -178,6 +178,12 @@
   color: white;
 }
 
+.carouselButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .carouselButtonPrev {
   left: -20px;
 }
@@ -207,6 +213,12 @@
 .indicatorActive {
   background-color: #4A90A4;
   transform: scale(1.2);
+}
+
+.indicator:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 /* Responsividade */

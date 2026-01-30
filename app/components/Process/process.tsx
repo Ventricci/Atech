@@ -35,17 +35,42 @@ const processSteps = [
 export default function Process() {
   const [currentStep, setCurrentStep] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleNext = () => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentStep((prev) => (prev + 1) % processSteps.length);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const handlePrev = () => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentStep((prev) => (prev - 1 + processSteps.length) % processSteps.length);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const handleDotClick = (index: number) => {
+    if (isTransitioning) return; // Bloqueia se já está em transição
+    
+    setIsTransitioning(true);
     setCurrentStep(index);
+    
+    // Libera após a transição CSS (300ms)
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 200);
   };
 
   const openModal = () => {
@@ -89,6 +114,7 @@ export default function Process() {
           <button 
             className={styles.carouselButton}
             onClick={handlePrev}
+            disabled={isTransitioning}
             aria-label="Passo anterior"
           >
             ‹
@@ -111,6 +137,7 @@ export default function Process() {
           <button 
             className={styles.carouselButton}
             onClick={handleNext}
+            disabled={isTransitioning}
             aria-label="Próximo passo"
           >
             ›
@@ -124,6 +151,7 @@ export default function Process() {
               key={index}
               className={`${styles.dot} ${index === currentStep ? styles.dotActive : ''}`}
               onClick={() => handleDotClick(index)}
+              disabled={isTransitioning}
               aria-label={`Ir para passo ${index + 1}`}
             />
           ))}
