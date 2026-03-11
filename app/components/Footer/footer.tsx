@@ -10,9 +10,9 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.content}>
           {/* Logo */}
-          <div className={styles.logoSection}>
+          {/* <div className={styles.logoSection}>
             <Logo variant="footer" />
-          </div>
+          </div> */}
 
           {/* Endereço */}
           <div className={styles.section}>
@@ -35,7 +35,8 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className={styles.copyright}>
-          <p>Copyright © 2025 - Atech Tecnologia e Sistemas Ltda</p>
+          <p>Copyright © 2025</p>
+          {/*  - Atech Tecnologia e Sistemas Ltda */}
         </div>
       </div>
     </footer>
