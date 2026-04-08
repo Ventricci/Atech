@@ -8,12 +8,13 @@
   letter-spacing: 0.05em;
 }
 
-.letterA {
+.firstWord {
   color: #25A18E;
+  margin-right: 0.4em; /* add horizontal gap between "Linfa" and "Tecnologia" */
 }
 
 /* Variante padrão (Header) */
-.default .letterTech {
+.default .secondWord {
   color: #16425B;
 }
 
@@ -22,7 +23,7 @@
   font-size: 2rem;
 }
 
-.footer .letterTech {
+.footer .secondWord {
   color: white;
 }
 

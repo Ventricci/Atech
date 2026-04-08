@@ -16,7 +16,7 @@ const orbitron = Orbitron({
 });
 
 export const metadata: Metadata = {
-  title: "ATECH - Inovação em Tecnologia",
+  title: "Linfa Tecnologia - Inovação em Tecnologia",
   description: "Movendo seu negócio em direção ao futuro",
 };
 

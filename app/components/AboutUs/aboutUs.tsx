@@ -12,7 +12,7 @@ export default function AboutUs() {
           <div className={styles.imageWrapper}>
             <img
               src="/about-us.png"
-              alt="Sobre a ATECH"
+              alt="Sobre a Linfa Tecnologia"
               className={styles.image}
             />
           </div>
