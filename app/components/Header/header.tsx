@@ -32,7 +32,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.toolbar}>
-          {/* <Logo /> */}
+          { <Logo />}
 
           {/* Menu Desktop - Centro */}
           {!isMobile && (

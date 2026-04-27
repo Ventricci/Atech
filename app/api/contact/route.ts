@@ -60,7 +60,7 @@ export async function POST(request: NextRequest) {
         <body>
           <div class="container">
             <div class="header">
-              <h2>Nova Mensagem de Contato - ATECH</h2>
+              <h2>Nova Mensagem de Contato - Linfa Tecnologia</h2>
             </div>
             <div class="content">
               <div class="field">
@@ -88,7 +88,7 @@ export async function POST(request: NextRequest) {
     // Enviar e-mail usando Resend
     try {
       const data = await resend.emails.send({
-        from: 'ATECH - Contato <onboarding@resend.dev>', // Domínio de teste do Resend
+        from: 'Linfa Tecnologia - Contato <onboarding@resend.dev>', // Domínio de teste do Resend
         to: 'rafaelpereiradecastro06@gmail.com',
         replyTo: email,
         subject: `Nova mensagem de contato - ${name}`,

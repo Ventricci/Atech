@@ -36,7 +36,7 @@ export default function Footer() {
         {/* Copyright */}
         <div className={styles.copyright}>
           <p>Copyright © 2025</p>
-          {/*  - Atech Tecnologia e Sistemas Ltda */}
+          <p>Linfa Tecnologias LTDA</p>
         </div>
       </div>
     </footer>

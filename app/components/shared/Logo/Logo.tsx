@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import styles from './logo.module.css';
 
 interface LogoProps {
@@ -10,13 +11,13 @@ interface LogoProps {
 
 export default function Logo({ variant = 'default', className = '' }: LogoProps) {
   return (
-    <a 
-      href="/" 
+    <a
+      href="/"
       className={`${styles.logo} ${styles[variant]} ${className}`}
-      aria-label="ATECH - Página inicial"
+      aria-label="Linfa Tecnologia - Página inicial"
     >
-      <span className={styles.letterA}>A</span>
-      <span className={styles.letterTech}>TECH</span>
+	      <span className={styles.firstWord}>Linfa</span>
+	      <span className={styles.secondWord}>Tecnologia</span>
     </a>
   );
 }
